@@ -59,12 +59,12 @@ export default function UserCreate() {
 
       <Modal open={open} setOpen={closeModal}>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create a new User
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm pb-6">
           <form onSubmit={formik.handleSubmit} className="space-y-6">
             <Input
               label='Email address'
@@ -94,7 +94,7 @@ export default function UserCreate() {
             />
 
             <BaseButton type="submit" loading={formik.isSubmitting}>
-              Sign in
+              Create
             </BaseButton>
           </form>
         </div>
