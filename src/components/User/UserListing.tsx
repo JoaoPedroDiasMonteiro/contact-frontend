@@ -9,8 +9,8 @@ export default function UserListing() {
   const context = usePaginationResource<User>()
 
   useEffect(() => {
-    context.fetch(() =>
-      UserRepository.index().then((users) => {
+    context.fetch(async () =>
+      await UserRepository.index().then((users) => {
         context.setResource(users)
       }).catch(() => { })
     )
@@ -97,9 +97,7 @@ export default function UserListing() {
                   ))}
                 </tbody>
               </table>
-              {context.resource && (
-                <Pagination resource={context.resource} />
-              )}
+              <Pagination />
             </div>
           </div>
         </div>
