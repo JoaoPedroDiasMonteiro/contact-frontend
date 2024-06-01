@@ -1,7 +1,7 @@
 
 export default function LoadingIndicator() {
   return (
-    <div className='animate-pulse absolute w-full h-full flex items-center justify-center bg-white bg-opacity-40'>
+    <div className='z-10 animate-pulse absolute w-full h-[-webkit-fill-available] flex items-center justify-center bg-white bg-opacity-80'>
       <span className="sr-only">loading</span>
       <svg className="animate-spin h-10  text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
