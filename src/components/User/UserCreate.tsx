@@ -1,7 +1,9 @@
 import { PlusCircleIcon } from '@heroicons/react/20/solid'
 import { useFormik } from 'formik'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import UserRepository from '../../repository/UserRepository'
+import { addNotification } from '../../store/notification/notificationReducer'
 import getError from '../../utils/getError'
 import BaseButton from '../Ui/Button/BaseButton'
 import Input from '../Ui/Input/Input'
@@ -10,6 +12,8 @@ import Modal from '../Ui/Modal'
 export default function UserCreate() {
   const [open, setOpen] = useState(false)
   const [errors, setErrors] = useState([])
+
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -23,6 +27,11 @@ export default function UserCreate() {
 
       UserRepository.create(values).then(() => {
         closeModal()
+        dispatch(addNotification({
+          title: 'Success',
+          body: 'User created successfully!',
+          type: 'success'
+        }))
       }).catch(({ response }) => {
         setErrors(response?.data?.errors ?? [])
         helpers.setSubmitting(false)
