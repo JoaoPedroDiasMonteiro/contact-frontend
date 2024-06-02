@@ -1,26 +1,22 @@
-import { ChevronDownIcon } from "@heroicons/react/20/solid"
-import { useEffect, useState } from "react"
-import usePaginationResource from "../../hooks/usePaginationResource"
-import UserRepository from "../../repository/UserRepository"
-import Pagination from "../Pagination/Index"
-import LoadingIndicator from "../Ui/LoadingIndicator"
-import UserCreate from "./UserCreate"
-import UserEdit from "./UserEdit"
-import { useNavigate } from "react-router-dom"
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useResource from "../../hooks/useResource";
+import UserRepository from "../../repository/UserRepository";
+import Pagination from '../Pagination/Index';
+import LoadingIndicator from "../Ui/LoadingIndicator";
+import UserCreate from "./UserCreate";
+import UserEdit from "./UserEdit";
 
 export default function UserListing() {
   const [showEdit, setShowEdit] = useState(false)
   const [user, setUser] = useState<User>()
 
   const navigate = useNavigate()
-  const context = usePaginationResource<User>()
+  const userResource = useResource<Pagination<User>>(UserRepository)
 
   useEffect(() => {
-    context.fetch(async () =>
-      await UserRepository.index().then((users) => {
-        context.setResource(users)
-      }).catch(() => { })
-    )
+    userResource.fetch()
   }, []) // eslint-disable-line
 
   function openEdit(user: User) {
@@ -53,7 +49,7 @@ export default function UserListing() {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <div className="relative min-h-56">
-                {context.isLoading && (
+                {userResource.isLoading && (
                   <LoadingIndicator />
                 )}
                 <table className="min-w-full divide-y divide-gray-300">
@@ -89,7 +85,7 @@ export default function UserListing() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {context.resource?.data.map((user) => (
+                    {userResource.resource?.data.map((user) => (
                       <tr key={user.id}>
                         <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">
                           {user.id}
@@ -115,7 +111,9 @@ export default function UserListing() {
                     ))}
                   </tbody>
                 </table>
-                <Pagination />
+                {userResource.resource && (
+                  <Pagination meta={userResource.resource.meta} navigate={userResource.handlePaginate} />
+                )}
               </div>
             </div>
           </div>
