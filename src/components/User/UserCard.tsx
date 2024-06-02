@@ -1,5 +1,4 @@
 import { ClockIcon } from '@heroicons/react/20/solid'
-import React from 'react'
 
 interface UserCardProps {
   readonly user: User
