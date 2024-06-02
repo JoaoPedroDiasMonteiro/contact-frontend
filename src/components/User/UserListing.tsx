@@ -8,6 +8,7 @@ import LoadingIndicator from "../Ui/LoadingIndicator";
 import UserCreate from "./UserCreate";
 import UserEdit from "./UserEdit";
 import EmptyStateMessage from "../Ui/EmptyStateMessage";
+import UserDelete from "./UserDelete";
 
 export default function UserListing() {
   const [showEdit, setShowEdit] = useState(false)
@@ -100,11 +101,12 @@ export default function UserListing() {
                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                           {new Date(user.created_at).toLocaleDateString()}
                         </td>
-                        <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                        <td className="relative whitespace-nowrap space-x-2 py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                          <UserDelete userId={user.id} afterSubmit={userResource.fetch} />
                           <button onClick={() => openEdit(user)} className="text-indigo-600 hover:text-indigo-900">
                             Edit <span className="sr-only">, {user.id}</span>
                           </button>
-                          <button onClick={() => navigate(`/user/${user.id}`)} className="ml-2 text-indigo-600 hover:text-indigo-900">
+                          <button onClick={() => navigate(`/user/${user.id}`)} className="text-indigo-600 hover:text-indigo-900">
                             View <span className="sr-only">View, {user.id}</span>
                           </button>
                         </td>

@@ -26,6 +26,9 @@ const UserRepository = {
   },
   update: async (id: number, payload: UserUpdateParams): Promise<User> => {
     return (await api.put(`users/${id}`, payload)).data
+  },
+  delete: async (id: number): Promise<null> => {
+    return (await api.delete(`users/${id}`)).data
   }
 }
 
