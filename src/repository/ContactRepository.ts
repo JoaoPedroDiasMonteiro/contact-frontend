@@ -22,6 +22,9 @@ const ContactRepository = {
   },
   update: async (userId: number, id: number, payload: ContactUpdateParams): Promise<Contact> => {
     return (await api.put(`/users/${userId}/contacts/${id}`, payload)).data
+  },
+  delete: async (userId: number, id: number): Promise<null> => {
+    return (await api.delete(`/users/${userId}/contacts/${id}`)).data
   }
 }
 

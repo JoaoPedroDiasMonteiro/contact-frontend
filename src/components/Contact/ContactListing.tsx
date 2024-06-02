@@ -7,6 +7,7 @@ import ContactRepository from "../../repository/ContactRepository";
 import ContactEdit from "./ContactEdit";
 import ContactCreate from "./ContactCreate";
 import EmptyStateMessage from "../Ui/EmptyStateMessage";
+import ContactDelete from "./ContactDelete";
 
 interface ContactListingProps {
   readonly userId: number
@@ -99,10 +100,11 @@ export default function ContactListing({ userId }: ContactListingProps) {
                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                           {new Date(contact.created_at).toLocaleDateString()}
                         </td>
-                        <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                        <td className="relative whitespace-nowrap space-x-2 py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                           <button onClick={() => openEdit(contact)} className="text-indigo-600 hover:text-indigo-900">
                             Edit <span className="sr-only">, {contact.id}</span>
                           </button>
+                          <ContactDelete userId={userId} contactId={contact.id} afterSubmit={contactResource.fetch} />
                         </td>
                       </tr>
                     ))}
