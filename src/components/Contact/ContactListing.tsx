@@ -6,6 +6,7 @@ import LoadingIndicator from "../Ui/LoadingIndicator";
 import ContactRepository from "../../repository/ContactRepository";
 import ContactEdit from "./ContactEdit";
 import ContactCreate from "./ContactCreate";
+import EmptyStateMessage from "../Ui/EmptyStateMessage";
 
 interface ContactListingProps {
   readonly userId: number
@@ -107,6 +108,9 @@ export default function ContactListing({ userId }: ContactListingProps) {
                     ))}
                   </tbody>
                 </table>
+                {!contactResource.isLoading && !contactResource.resource?.data.length && (
+                  <EmptyStateMessage />
+                )}
                 {contactResource.resource && (
                   <Pagination meta={contactResource.resource.meta} navigate={contactResource.handlePaginate} />
                 )}

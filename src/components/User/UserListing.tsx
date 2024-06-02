@@ -7,6 +7,7 @@ import Pagination from '../Pagination/Index';
 import LoadingIndicator from "../Ui/LoadingIndicator";
 import UserCreate from "./UserCreate";
 import UserEdit from "./UserEdit";
+import EmptyStateMessage from "../Ui/EmptyStateMessage";
 
 export default function UserListing() {
   const [showEdit, setShowEdit] = useState(false)
@@ -111,6 +112,9 @@ export default function UserListing() {
                     ))}
                   </tbody>
                 </table>
+                {!userResource.isLoading && !userResource.resource?.data.length && (
+                  <EmptyStateMessage />
+                )}
                 {userResource.resource && (
                   <Pagination meta={userResource.resource.meta} navigate={userResource.handlePaginate} />
                 )}
