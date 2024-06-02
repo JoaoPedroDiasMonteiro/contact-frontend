@@ -10,7 +10,7 @@ interface ContactUpdateParams {
   value?: string
 }
 
-const UserRepository = {
+const ContactRepository = {
   index: async (userId: number, options: ResourceIndexOptions = {}): Promise<Pagination<Contact>> => {
     return (await api.get(`/users/${userId}/contacts`, { params: options })).data
   },
@@ -25,4 +25,4 @@ const UserRepository = {
   }
 }
 
-export default UserRepository
+export default ContactRepository
