@@ -6,11 +6,13 @@ import Pagination from "../Pagination/Index"
 import LoadingIndicator from "../Ui/LoadingIndicator"
 import UserCreate from "./UserCreate"
 import UserEdit from "./UserEdit"
+import { useNavigate } from "react-router-dom"
 
 export default function UserListing() {
   const [showEdit, setShowEdit] = useState(false)
   const [user, setUser] = useState<User>()
 
+  const navigate = useNavigate()
   const context = usePaginationResource<User>()
 
   useEffect(() => {
@@ -104,6 +106,9 @@ export default function UserListing() {
                         <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                           <button onClick={() => openEdit(user)} className="text-indigo-600 hover:text-indigo-900">
                             Edit <span className="sr-only">, {user.id}</span>
+                          </button>
+                          <button onClick={() => navigate(`/user/${user.id}`)} className="ml-2 text-indigo-600 hover:text-indigo-900">
+                            View <span className="sr-only">View, {user.id}</span>
                           </button>
                         </td>
                       </tr>
