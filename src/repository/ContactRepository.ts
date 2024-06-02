@@ -27,7 +27,7 @@ const ContactRepository = {
 
 export const ContactTypes = [
   { id: 'whatsapp', type: 'Whatsapp' },
-  { id: 'email', type: 'Whatsapp' },
+  { id: 'email', type: 'Email' },
   { id: 'phone', type: 'Phone' },
 ]
 
