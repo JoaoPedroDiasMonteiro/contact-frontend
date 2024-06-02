@@ -10,11 +10,12 @@ import Modal from '../Ui/Modal'
 
 interface UserEditProps {
   readonly user: User
-  readonly open: boolean,
+  readonly open: boolean
   readonly closeOpen: () => void
+  readonly afterSubmit?: () => void
 }
 
-export default function UserEdit({ user, open, closeOpen }: UserEditProps) {
+export default function UserEdit({ user, open, closeOpen, afterSubmit }: UserEditProps) {
   const [errors, setErrors] = useState([])
 
   const dispatch = useDispatch()
@@ -40,6 +41,10 @@ export default function UserEdit({ user, open, closeOpen }: UserEditProps) {
         setErrors(response?.data?.errors ?? [])
         helpers.setSubmitting(false)
       })
+
+      if (afterSubmit) {
+        setTimeout(() => afterSubmit(), 333);
+      }
     }
   })
 

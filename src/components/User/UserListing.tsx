@@ -31,7 +31,7 @@ export default function UserListing() {
   return (
     <>
       {user && (
-        <UserEdit open={showEdit} user={user} closeOpen={closeEdit} />
+        <UserEdit open={showEdit} user={user} closeOpen={closeEdit} afterSubmit={userResource.fetch} />
       )}
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
@@ -42,7 +42,7 @@ export default function UserListing() {
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <UserCreate />
+            <UserCreate afterSubmit={userResource.fetch} />
           </div>
         </div>
         <div className="mt-8 flow-root">

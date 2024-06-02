@@ -9,7 +9,11 @@ import BaseButton from '../Ui/Button/BaseButton'
 import Input from '../Ui/Input/Input'
 import Modal from '../Ui/Modal'
 
-export default function UserCreate() {
+interface UserCreateProps {
+  readonly afterSubmit?: () => void
+}
+
+export default function UserCreate({ afterSubmit }: UserCreateProps) {
   const [open, setOpen] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -32,6 +36,10 @@ export default function UserCreate() {
           body: 'User created successfully!',
           type: 'success'
         }))
+
+        if (afterSubmit) {
+          setTimeout(() => afterSubmit(), 333);
+        }
       }).catch(({ response }) => {
         setErrors(response?.data?.errors ?? [])
         helpers.setSubmitting(false)

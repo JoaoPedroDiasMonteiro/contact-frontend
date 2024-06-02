@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import getParameterFromUrl from "../utils/getParameterFromUrl"
 
 export default function useResource<T>(repository: any) {
@@ -7,19 +7,17 @@ export default function useResource<T>(repository: any) {
   const [page, setPage] = useState<number | null>(null)
   // const [sort, setSort] = useState("id")
 
-  async function fetch() {
-    setIsLoading(true)
+  const fetch = useCallback(async () => {
     fetchResource(page)
-    setIsLoading(false)
-  }
+  }, [page]) // eslint-disable-line
 
-  async function handlePaginate(url: string | null) {
+  const handlePaginate = useCallback(async (url: string | null) => {
     if (!url) return
 
     const page = getParameterFromUrl(url, 'page') as number | null
     setPage(page)
     fetchResource(page)
-  }
+  }, []) // eslint-disable-line
 
   async function fetchResource(page: number | null) {
     setIsLoading(true)
