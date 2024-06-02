@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 import getParameterFromUrl from "../utils/getParameterFromUrl"
 
-export default function useResource<T>(repository: any) {
+export default function useResource<T>(repository: any, params: any[] = []) {
   const [resource, setResource] = useState<T>()
   const [isLoading, setIsLoading] = useState(false)
   const [page, setPage] = useState<number | null>(null)
@@ -21,7 +21,7 @@ export default function useResource<T>(repository: any) {
 
   async function fetchResource(page: number | null) {
     setIsLoading(true)
-    await repository.index({ page }).then((data: any) => {
+    await repository.index(...params ?? [], { page }).then((data: any) => {
       setResource(data)
     }).catch(() => { })
     setIsLoading(false)
