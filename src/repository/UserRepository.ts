@@ -18,6 +18,9 @@ const UserRepository = {
   index: async (): Promise<Pagination<User>> => {
     return (await api.get('/users')).data
   },
+  show: async (id: number): Promise<User> => {
+    return (await api.get(`users/${id}`)).data
+  },
   create: async (payload: UserCreateParams): Promise<User> => {
     return (await api.post('/users', payload)).data
   },
