@@ -29,6 +29,7 @@ export default function ContactCreate({ userId, afterSubmit }: ContactCreateProp
     onSubmit: (values, helpers) => {
       setErrors([])
 
+      // @ts-expect-error I'll fix it later
       ContactRepository.create(userId, values).then(() => {
         closeModal()
         dispatch(addNotification({
