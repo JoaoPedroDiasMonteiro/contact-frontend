@@ -1,11 +1,12 @@
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import ContactRepository from '../../repository/ContactRepository'
+import ContactRepository, { ContactTypes } from '../../repository/ContactRepository'
 import { addNotification } from '../../store/notification/notificationReducer'
 import getError from '../../utils/getError'
 import BaseButton from '../Ui/Button/BaseButton'
 import Input from '../Ui/Input/Input'
+import Select from '../Ui/Input/Select'
 import Modal from '../Ui/Modal'
 
 interface ContactEditProps {
@@ -71,7 +72,8 @@ export default function ContactEdit({ contact, open, closeOpen, afterSubmit }: C
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm pb-6">
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-          <Input
+          <Select
+            items={ContactTypes}
             label='Type'
             error={getError(errors, 'type')}
             {...formik.getFieldProps('type')}

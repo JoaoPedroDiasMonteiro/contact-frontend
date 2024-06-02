@@ -25,4 +25,10 @@ const ContactRepository = {
   }
 }
 
+export const ContactTypes = [
+  { id: 'whatsapp', type: 'Whatsapp' },
+  { id: 'email', type: 'Whatsapp' },
+  { id: 'phone', type: 'Phone' },
+]
+
 export default ContactRepository
