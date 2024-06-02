@@ -1,11 +1,11 @@
+import { DialogTitle } from '@headlessui/react'
+import { ExclamationTriangleIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ContactRepository from '../../repository/ContactRepository'
 import { addNotification } from '../../store/notification/notificationReducer'
-import { useState } from 'react'
-import Modal from '../Ui/Modal'
-import { ExclamationTriangleIcon } from '@heroicons/react/20/solid'
-import { Button, DialogTitle } from '@headlessui/react'
 import BaseButton from '../Ui/Button/BaseButton'
+import Modal from '../Ui/Modal'
 
 interface ContactDeleteProps {
   readonly contactId: number
