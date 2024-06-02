@@ -15,8 +15,8 @@ interface UserUpdateParams {
 }
 
 const UserRepository = {
-  index: async (): Promise<Pagination<User>> => {
-    return (await api.get('/users')).data
+  index: async (options: ResourceIndexOptions = {}): Promise<Pagination<User>> => {
+    return (await api.get('/users', { params: options })).data
   },
   show: async (id: number): Promise<User> => {
     return (await api.get(`users/${id}`)).data

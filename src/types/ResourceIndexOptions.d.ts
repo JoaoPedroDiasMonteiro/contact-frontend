@@ -1,0 +1,3 @@
+interface ResourceIndexOptions {
+    page?: number
+}

@@ -11,8 +11,8 @@ interface ContactUpdateParams {
 }
 
 const UserRepository = {
-  index: async (userId: number): Promise<Pagination<Contact>> => {
-    return (await api.get(`/users/${userId}/contacts`)).data
+  index: async (userId: number, options: ResourceIndexOptions = {}): Promise<Pagination<Contact>> => {
+    return (await api.get(`/users/${userId}/contacts`, { params: options })).data
   },
   show: async (userId: number, id: number): Promise<Contact> => {
     return (await api.get(`/users/${userId}/contacts/${id}`)).data
