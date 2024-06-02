@@ -16,9 +16,11 @@ export function UserPage() {
       )}>
         <Await resolve={user} errorElement={<ErrorCode fullScreen code="404" />}>
           {(user) => (
-            <div className="mx-auto container px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div className="mx-auto container px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
               <UserCard user={user} />
-              <ContactListing userId={user.id} />
+              <div className="mt:6 lg:mt-0 col-span-2 rounded-3xl py-7 px-2 ring-1 ring-gray-200">
+                <ContactListing userId={user.id} />
+              </div>
             </div>
           )}
         </Await>
