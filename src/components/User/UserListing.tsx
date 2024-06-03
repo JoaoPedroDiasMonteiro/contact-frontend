@@ -1,14 +1,13 @@
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useResource from "../../hooks/useResource";
 import UserRepository from "../../repository/UserRepository";
 import Pagination from '../Pagination/Index';
+import EmptyStateMessage from "../Ui/EmptyStateMessage";
 import LoadingIndicator from "../Ui/LoadingIndicator";
 import UserCreate from "./UserCreate";
-import UserEdit from "./UserEdit";
-import EmptyStateMessage from "../Ui/EmptyStateMessage";
 import UserDelete from "./UserDelete";
+import UserEdit from "./UserEdit";
 
 export default function UserListing() {
   const [showEdit, setShowEdit] = useState(false)

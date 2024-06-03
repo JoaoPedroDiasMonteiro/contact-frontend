@@ -1,13 +1,12 @@
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import useResource from "../../hooks/useResource";
-import Pagination from '../Pagination/Index';
-import LoadingIndicator from "../Ui/LoadingIndicator";
 import ContactRepository from "../../repository/ContactRepository";
-import ContactEdit from "./ContactEdit";
-import ContactCreate from "./ContactCreate";
+import Pagination from '../Pagination/Index';
 import EmptyStateMessage from "../Ui/EmptyStateMessage";
+import LoadingIndicator from "../Ui/LoadingIndicator";
+import ContactCreate from "./ContactCreate";
 import ContactDelete from "./ContactDelete";
+import ContactEdit from "./ContactEdit";
 
 interface ContactListingProps {
   readonly userId: number
