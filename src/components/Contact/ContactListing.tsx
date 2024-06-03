@@ -62,14 +62,11 @@ export default function ContactListing({ userId }: ContactListingProps) {
                       >
                         ID
                       </th>
-                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                        <button className="group inline-flex">
-                          Type
-                          {' '}
-                          <span className="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200">
-                            <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-                          </span>
-                        </button>
+                      <th
+                        scope="col"
+                        className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                      >
+                        Type
                       </th>
                       <th
                         scope="col"
